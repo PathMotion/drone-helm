@@ -6,8 +6,8 @@ FROM golang:1.12-alpine3.9 as builder
 RUN apk update
 RUN apk add dep git
 
-ENV GOOS linux 
-ENV GOARCH=386 
+ENV GOOS linux
+ENV GOARCH=386
 
 WORKDIR /go/src/github.com/ipedrazas/drone-helm
 COPY . .
@@ -27,6 +27,7 @@ COPY --from=builder /go/src/github.com/ipedrazas/drone-helm/drone-helm /bin/
 ARG VERSION
 ENV VERSION ${VERSION:-v2.14.1}
 ENV FILENAME helm-${VERSION}-linux-amd64.tar.gz
+# ENV FILENAME helm-v2.13.0-linux-amd64.tar.gz
 
 ARG KUBECTL
 ENV KUBECTL ${KUBECTL:-v1.14.3}
